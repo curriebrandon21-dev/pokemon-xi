@@ -369,5 +369,9 @@ aiDraftOne=function(){
  if(best)draftPlayer(best.id);
 };
 
-init();render();
+try { init(); render(); } catch (error) {
+ console.error('Pokémon XI startup failed:',error);
+ const root=document.getElementById('app');
+ if(root)root.innerHTML='<main style="max-width:700px;margin:60px auto;padding:24px;color:white;background:#181818;border:1px solid gold;font-family:system-ui"><h1>Pokémon XI loading error</h1><p>Your saved dynasty is preserved.</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere">'+String(error&&error.stack||error).replace(/</g,'&lt;')+'</pre><button onclick="location.reload()">Retry</button></main>';
+}
 </script></body></html>
